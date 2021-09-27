@@ -1,4 +1,4 @@
-import { IBaseEntity } from '@common/base/base-entity.model';
+import { IBaseEntity } from '@root/app/common/base/base-entity.model';
 export interface IUser extends IBaseEntity {
   firstName: string;
   lastName: string;

@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm';
 import { IUser } from '@root/models/user/user.model';
-import { Base } from '@common/base';
+import { Base } from '@root/app/common/base';
 
 @Entity('users')
 export class User extends Base implements IUser {

@@ -1,4 +1,4 @@
-import { QueryNarrowingOperators } from '@common/enum/query-operators.enum';
+import { QueryNarrowingOperators } from '@root/app/common/enum/query-operators.enum';
 
 export interface IFilterField<T> {
   name: string;

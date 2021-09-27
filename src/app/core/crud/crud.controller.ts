@@ -1,7 +1,7 @@
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Get, Post, Put, Delete, Body, Param, HttpStatus, HttpCode, Query, ParseArrayPipe } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
-import { BaseEntitySearchDto } from '@common/base/base-search.dto';
+import { BaseEntitySearchDto } from '@root/app/common/base/base-search.dto';
 import { ICrudService } from './crud.service.model';
 
 @ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized' })
