@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["esnext"],
+    "esModuleInterop": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "alwaysStrict": true,
+    "noImplicitAny": false,
+    "paths": {
+      "@root/*": ["src/*"],
+      "@common/*": ["src/app/common/*"],
+      "@test/*": ["test/*"],
+      "@resources/*": ["resources/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
