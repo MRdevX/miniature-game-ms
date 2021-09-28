@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, Index, ManyToOne } from 'typeorm';
 import { Base } from '@root/app/common/base';
 import { IGame } from '@root/models/game/game.model';
 import { Publisher } from '@root/app/publisher/publisher.entity';
@@ -14,6 +14,7 @@ export class Game extends Base implements IGame {
   @Column('simple-array', { nullable: true })
   tags: string[];
 
+  @Index('release_date_index')
   @Column({ type: 'timestamptz' })
   releaseDate: Date;
 
