@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.2 (2021-09-28)
+
+
+### Features
+
+* add game and publisher entity ([48c35ae](https://github.com/MRdevX/miniature-game-ms/commit/48c35aebbf0392aae0d4b14c3696e7dd1f9be937))
+* add game and publisher models ([7680634](https://github.com/MRdevX/miniature-game-ms/commit/768063405f1aa16b162bbdfc6d64631a3844762f))
+* add game model ([b9b182b](https://github.com/MRdevX/miniature-game-ms/commit/b9b182b22f6ae92c50baacb3a3e68ad882d72305))
+* add game module ([852def2](https://github.com/MRdevX/miniature-game-ms/commit/852def229ef490c13d040e613bc7c150c59bb38f))
+* add publisher module ([f1fb608](https://github.com/MRdevX/miniature-game-ms/commit/f1fb6083a5a335d14e93438f0fa1af13b2721597))
+* implement game and publisher controller and services ([06a5a92](https://github.com/MRdevX/miniature-game-ms/commit/06a5a92468242297784e2aa10f70cc1f9aa1d88c))
+* updgrade packages ([c3787de](https://github.com/MRdevX/miniature-game-ms/commit/c3787deb4610540b60142d423ff7f20a6e9a3a0a))
+* upgrade packages ([05ec728](https://github.com/MRdevX/miniature-game-ms/commit/05ec728c74e62e2d8059253135fb4f4a9c53ce80))
+
+
+### Bug Fixes
+
+* fix tests ([f7ec0bf](https://github.com/MRdevX/miniature-game-ms/commit/f7ec0bf6a6bd35f76e3480d15a66499a2218ede3))
+
 ### [0.0.9](https://github.com/MRdevX/nestjs-microservice-kit/compare/v0.0.8...v0.0.9) (2021-09-27)
 
 
