@@ -11,12 +11,12 @@ export class Game extends Base implements IGame {
   @Column({ nullable: true })
   price: number;
 
-  @Column('string', { array: true })
+  @Column('simple-array', { nullable: true })
   tags: string[];
 
   @Column({ type: 'timestamptz' })
   releaseDate: Date;
 
-  @ManyToOne(() => Publisher, (publisher) => publisher.games, { eager: true })
+  @ManyToOne(() => Publisher, (publisher: Publisher) => publisher.games, { eager: true })
   publisher: Publisher;
 }

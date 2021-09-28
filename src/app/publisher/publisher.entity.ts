@@ -14,6 +14,6 @@ export class Publisher extends Base implements IPublisher {
   @Column({ nullable: true })
   phone: string;
 
-  @OneToMany(() => Game, (game) => game.publisher, { cascade: true })
+  @OneToMany(() => Game, (game: Game) => game.publisher, { cascade: true })
   games: Game[];
 }
