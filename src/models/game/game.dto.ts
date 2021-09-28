@@ -1,8 +1,7 @@
-import { IsArray, IsDate, IsNumber, IsOptional, IsString, IsUUID, ValidateNested } from 'class-validator';
+import { IsArray, IsDate, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { ApiProperty, OmitType, PartialType, ApiPropertyOptional } from '@nestjs/swagger';
 import { IGame } from './game.model';
 import { PublisherDto } from '@root/models/publisher/publisher.dto';
-import { Exclude } from 'class-transformer';
 
 export class GameDto implements IGame {
   id?: string;

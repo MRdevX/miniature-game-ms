@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Repository, BaseEntity, DeepPartial, DeleteResult, UpdateResult } from 'typeorm';
+import { ICrudService } from './crud.service.model';
 
 @Injectable()
-export class CrudService<T extends BaseEntity> {
+export class CrudService<T extends BaseEntity> implements ICrudService<T> {
   constructor(private readonly genericRepository: Repository<T>) {}
 
   async getAll(): Promise<T[]> {

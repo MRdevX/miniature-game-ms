@@ -4,7 +4,7 @@ import { PublisherDto } from '@root/models/publisher/publisher.dto';
 import { GameService } from './game.service';
 
 @Controller('games/:gameId/publishers')
-@ApiTags('Game', 'Game Publisher')
+@ApiTags('Game')
 export class GamePublisherController {
   constructor(private readonly gameService: GameService) {}
 

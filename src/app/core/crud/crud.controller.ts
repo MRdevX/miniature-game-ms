@@ -1,9 +1,9 @@
 import { Get, Post, Delete, Body, Param, Patch } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { BaseEntity, DeleteResult, UpdateResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 import { ICrudService } from './crud.service.model';
 
-export class CrudController<T extends BaseEntity> {
+export class CrudController<T> {
   constructor(private readonly crudService: ICrudService<T>) {}
 
   @Get()
@@ -37,7 +37,7 @@ export class CrudController<T extends BaseEntity> {
   @ApiOperation({ summary: 'Update an existing record.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   @ApiResponse({ status: 200, description: 'Entity updated successfully.' })
-  async update(@Param('id') id: string, @Body() entity: T): Promise<UpdateResult> {
+  async update(@Param('id') id: string, @Body() entity: T): Promise<UpdateResult | T> {
     return this.crudService.update(id, entity);
   }
 

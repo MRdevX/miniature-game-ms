@@ -1,22 +1,22 @@
 import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateGameDto, UpdateGameDto } from '@root/models/game/game.dto';
+import { CreateGameDto, GameDto, UpdateGameDto } from '@root/models/game/game.dto';
 import { CrudController } from '@root/app/core/crud/crud.controller';
-import { Game } from './game.entity';
 import { GameService } from './game.service';
 import { UpdateResult } from 'typeorm';
 
 @Controller('games')
 @ApiTags('Game')
-export class GameController extends CrudController<Game> {
+export class GameController extends CrudController<GameDto> {
   constructor(private readonly gameService: GameService) {
     super(gameService);
   }
 
   @ApiOperation({ summary: 'Create a new record' })
   @Post()
-  async create(@Body() entity: CreateGameDto): Promise<Game> {
-    return this.gameService.create(entity);
+  async create(@Body() entity: CreateGameDto): Promise<GameDto> {
+    const game = await this.gameService.create(entity);
+    return game;
   }
 
   @ApiOperation({ summary: 'Update an existing record' })
