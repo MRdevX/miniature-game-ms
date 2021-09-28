@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository, BaseEntity, DeepPartial } from 'typeorm';
+import { Repository, BaseEntity, DeepPartial, DeleteResult, UpdateResult } from 'typeorm';
 
 @Injectable()
 export class CrudService<T extends BaseEntity> {
@@ -17,12 +17,11 @@ export class CrudService<T extends BaseEntity> {
     return await this.genericRepository.create(entity).save();
   }
 
-  async update(id: string, entity: DeepPartial<T>): Promise<T> {
-    await this.genericRepository.update(id, entity);
-    return this.getOne(id);
+  async update(id: string, entity: DeepPartial<T>): Promise<UpdateResult> {
+    return await this.genericRepository.update(id, entity);
   }
 
-  async delete(id: string): Promise<any> {
+  async delete(id: string): Promise<DeleteResult> {
     return await this.genericRepository.delete(id);
   }
 }

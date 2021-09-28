@@ -4,6 +4,7 @@ import { CreateGameDto, UpdateGameDto } from '@root/models/game/game.dto';
 import { CrudController } from '@root/app/core/crud/crud.controller';
 import { Game } from './game.entity';
 import { GameService } from './game.service';
+import { UpdateResult } from 'typeorm';
 
 @Controller('games')
 @ApiTags('Game')
@@ -20,7 +21,7 @@ export class GameController extends CrudController<Game> {
 
   @ApiOperation({ summary: 'Update an existing record' })
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() entity: UpdateGameDto): Promise<Game> {
+  async update(@Param('id') id: string, @Body() entity: UpdateGameDto): Promise<UpdateResult> {
     return this.gameService.update(id, entity);
   }
 }
