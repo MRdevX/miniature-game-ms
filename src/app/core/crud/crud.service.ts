@@ -1,4 +1,4 @@
-import { get, set, isArray, each, isString, isObject, filter, isNil, map, merge } from 'lodash';
+import { assign, get, set, isArray, each, isString, isObject, filter, isNil, map, merge } from 'lodash';
 import {
   Brackets,
   DeepPartial,
@@ -9,21 +9,17 @@ import {
   Repository,
   SaveOptions,
   SelectQueryBuilder,
+  UpdateResult,
 } from 'typeorm';
-import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
-import {
-  BadRequestException,
-  ConflictException,
-  InternalServerErrorException,
-  NotFoundException,
-} from '@nestjs/common';
+import { ConflictException, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { Base } from '../../common/base';
+import { BaseEntitySearchDto } from '../../common/base/base-search.dto';
+import { QueryNarrowingOperators } from '../../common/enum/query-operators.enum';
+import { IRelation } from '../../common/interface/relation.interface';
+import { SearchConfig, VirtualRelationConfig } from '../../common/interface/search.config.interface';
+import { ErrorMessage } from '../../common/enum/error-message.enum';
 import { ICrudService } from './crud.service.model';
-import { BaseEntitySearchDto } from '@root/app/common/base/base-search.dto';
-import { ErrorMessage } from '@root/app/common/enum/error-message.enum';
-import { QueryNarrowingOperators } from '@root/app/common/enum/query-operators.enum';
-import { IFilterField } from '@root/app/common/interface/filter-field.interface';
-import { IRelation } from '@root/app/common/interface/relation.interface';
-import { SearchConfig, VirtualRelationConfig } from '@root/app/common/interface/search.config.interface';
+import { IFilterField } from '../../common/interface/filter-field.interface';
 
 export abstract class CrudService<T> implements ICrudService<T> {
   private readonly entityName = this.repository.metadata.targetName;
@@ -86,6 +82,10 @@ export abstract class CrudService<T> implements ICrudService<T> {
         const direction = (options.sortDirections && CrudService.getSortVerb(options.sortDirections[i])) || 'ASC';
         qb = qb.addOrderBy(path, direction);
       }
+    }
+
+    if (searchConfig.withDeleted) {
+      qb = qb.withDeleted();
     }
 
     // take/skip is generally recommended by typeorm, but behaves unexpected when adding virtualRelations
@@ -158,38 +158,22 @@ export abstract class CrudService<T> implements ICrudService<T> {
       const obj: any = this.repository.create(entity);
       return await this.repository.save(obj, options);
     } catch (e) {
-      // UniqueViolation
       if (e.code === '23505') {
         throw new ConflictException(ErrorMessage.Common.EntityAlreadyExists(this.entityName));
       }
       throw e;
     }
   }
+  async update(id: string, entity: DeepPartial<T>): Promise<UpdateResult> {
+    return await this.repository.update(id, entity);
+  }
 
-  /**
-   * Note: This does not update Many to Many relations.
-   * For updating Many To Many relations use save.
-   */
-  public async update(id: string | number | FindConditions<T>, partialEntity: QueryDeepPartialEntity<T>) {
-    const result = await this.repository.update(id, partialEntity);
-    if (!result.affected) {
-      throw new NotFoundException(ErrorMessage.Common.EntityNotFound(this.entityName));
-    }
-    return result;
+  async delete(id: string): Promise<DeleteResult> {
+    return await this.repository.delete(id);
   }
 
   public save(entity: DeepPartial<T>): Promise<T> {
     return this.repository.save(entity);
-  }
-
-  public delete(criteria: string | number | FindConditions<T>): Promise<DeleteResult> {
-    if (!criteria) {
-      throw new BadRequestException(ErrorMessage.Common.NoDeleteCriteria);
-    }
-    if (this.repository?.metadata?.deleteDateColumn) {
-      return this.repository.softDelete(criteria);
-    }
-    return this.repository.delete(criteria);
   }
 
   public async remove(records: T[] | DeepPartial<T>[]): Promise<DeleteResult> {
@@ -203,6 +187,17 @@ export abstract class CrudService<T> implements ICrudService<T> {
       raw: [],
       affected: result.length,
     };
+  }
+
+  public async createEntityWithOneRelation<Y extends Base>(
+    entity: any,
+    relationService: ICrudService<Y>,
+    relationKey: string,
+  ) {
+    const relation: Y = await relationService.findById(entity[relationKey]?.id);
+    const entityForCreate = assign({}, entity, { [relationKey]: relation });
+    const model: T = await this.create(entityForCreate);
+    return this.findById(get(model, 'id'), { relations: [relationKey] });
   }
 
   private joinRelation(qb: SelectQueryBuilder<T>, parentEntity: string, relation: string | IRelation<T>) {
@@ -297,6 +292,7 @@ export abstract class CrudService<T> implements ICrudService<T> {
       virtualRelations: [],
       caseInsensitiveSearch: true,
       fullTextSearch: true,
+      withDeleted: false,
     };
   }
 

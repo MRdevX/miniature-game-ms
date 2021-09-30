@@ -3,6 +3,7 @@ import { ApiProperty, OmitType, PartialType } from '@nestjs/swagger';
 import { IPublisher } from '@root/models/publisher/publisher.model';
 
 export class PublisherDto implements IPublisher {
+  @IsUUID('4')
   id?: string;
 
   @ApiProperty({
@@ -23,7 +24,7 @@ export class PublisherDto implements IPublisher {
     description: 'Publisher Phone Number.',
     example: '02077512555',
   })
-  @IsString()
+  @IsPhoneNumber()
   phone: string;
 }
 

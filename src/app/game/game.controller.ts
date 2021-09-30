@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateGameDto, GameDto, UpdateGameDto } from '@root/models/game/game.dto';
-import { CrudController } from '@root/app/core/crud/crud.controller';
+import { Controller } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { CrudController } from '../core/crud/crud.controller';
+import { Game } from './game.entity';
 import { GameService } from './game.service';
 import { UpdateResult } from 'typeorm';
 import { GameSearchDto } from '../../models/game/game.search.dto';
@@ -11,24 +11,5 @@ import { GameSearchDto } from '../../models/game/game.search.dto';
 export class GameController extends CrudController<GameDto> {
   constructor(private readonly gameService: GameService) {
     super(gameService);
-  }
-
-  @ApiOperation({ summary: 'Search paginated' })
-  @Get()
-  async search(@Query() options?: GameSearchDto) {
-    return this.gameService.search(options);
-  }
-
-  @ApiOperation({ summary: 'Create a new record' })
-  @Post()
-  async create(@Body() entity: CreateGameDto): Promise<GameDto> {
-    const game = await this.gameService.create(entity);
-    return game;
-  }
-
-  @ApiOperation({ summary: 'Update an existing record' })
-  @Patch(':id')
-  async update(@Param('id') id: string, @Body() entity: UpdateGameDto): Promise<UpdateResult> {
-    return this.gameService.update(id, entity);
   }
 }
