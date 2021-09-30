@@ -4,6 +4,7 @@ import { Brackets, ObjectLiteral } from 'typeorm';
 export interface SearchConfig {
   fullTextSearch?: boolean;
   caseInsensitiveSearch?: boolean;
+  withDeleted?: boolean;
   /** Used for adding internal complex search conditions for some custom cases */
   andWhere?: {
     condition: string | Brackets;

@@ -1,10 +1,9 @@
-import { IsDate, IsNumber, IsOptional, IsString, IsUUID, ValidateNested } from 'class-validator';
+import { IsArray, IsDate, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { ApiProperty, OmitType, PartialType, ApiPropertyOptional } from '@nestjs/swagger';
 import { IGame } from './game.model';
 import { PublisherDto } from '@root/models/publisher/publisher.dto';
 
 export class GameDto implements IGame {
-  @IsUUID('4')
   id?: string;
 
   @ApiProperty({
@@ -31,7 +30,7 @@ export class GameDto implements IGame {
   @ApiPropertyOptional({
     description: 'Game Tags.',
   })
-  @IsString()
+  @IsArray()
   @IsOptional()
   tags: string[];
 
@@ -41,5 +40,6 @@ export class GameDto implements IGame {
   @IsDate()
   releaseDate: Date;
 }
+export class CreateGameDto extends PartialType(OmitType(GameDto, ['id', 'publisher'] as const)) {}
 
 export class UpdateGameDto extends PartialType(OmitType(GameDto, ['id'] as const)) {}
