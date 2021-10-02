@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   Repository,
   BaseEntity,
@@ -8,10 +8,13 @@ import {
   FindOneOptions,
   FindConditions,
 } from 'typeorm';
+import { ErrorMessage } from '../../common/enum/error-message.enum';
 import { ICrudService } from './crud.service.model';
 
 @Injectable()
 export class CrudService<T extends BaseEntity> implements ICrudService<T> {
+  private readonly entityName = this.genericRepository.metadata.targetName;
+
   constructor(private readonly genericRepository: Repository<T>) {}
 
   async getAll(): Promise<T[]> {
@@ -43,5 +46,15 @@ export class CrudService<T extends BaseEntity> implements ICrudService<T> {
       return result;
     }
     return result;
+  }
+
+  public async findById(id: string | number, options?: FindOneOptions<T>): Promise<T> {
+    if (id) {
+      const result: T = await this.findOne(id, options);
+      if (result) {
+        return result;
+      }
+    }
+    throw new NotFoundException(ErrorMessage.Common.EntityNotFound(this.entityName));
   }
 }
