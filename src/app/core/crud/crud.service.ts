@@ -1,9 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { Repository, BaseEntity, DeepPartial, DeleteResult, UpdateResult } from 'typeorm';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Repository,
+  BaseEntity,
+  DeepPartial,
+  DeleteResult,
+  UpdateResult,
+  FindOneOptions,
+  FindConditions,
+} from 'typeorm';
+import { ErrorMessage } from '../../common/enum/error-message.enum';
 import { ICrudService } from './crud.service.model';
 
 @Injectable()
 export class CrudService<T extends BaseEntity> implements ICrudService<T> {
+  private readonly entityName = this.genericRepository.metadata.targetName;
+
   constructor(private readonly genericRepository: Repository<T>) {}
 
   async getAll(): Promise<T[]> {
@@ -24,5 +35,26 @@ export class CrudService<T extends BaseEntity> implements ICrudService<T> {
 
   async delete(id: string): Promise<DeleteResult> {
     return await this.genericRepository.delete(id);
+  }
+
+  public async findOne(
+    id: string | number | FindOneOptions<T> | FindConditions<T>,
+    options?: FindOneOptions<T>,
+  ): Promise<T> {
+    const result = await this.genericRepository.findOne(id as any, options);
+    if (!result) {
+      return result;
+    }
+    return result;
+  }
+
+  public async findById(id: string | number, options?: FindOneOptions<T>): Promise<T> {
+    if (id) {
+      const result: T = await this.findOne(id, options);
+      if (result) {
+        return result;
+      }
+    }
+    throw new NotFoundException(ErrorMessage.Common.EntityNotFound(this.entityName));
   }
 }

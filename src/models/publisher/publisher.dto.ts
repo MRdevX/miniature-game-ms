@@ -1,4 +1,4 @@
-import { IsPhoneNumber, IsString, IsUUID } from 'class-validator';
+import { IsString } from 'class-validator';
 import { ApiProperty, OmitType, PartialType } from '@nestjs/swagger';
 import { IPublisher } from '@root/models/publisher/publisher.model';
 
@@ -26,5 +26,7 @@ export class PublisherDto implements IPublisher {
   @IsString()
   phone: string;
 }
+
+export class CreatePublisherDto extends OmitType(PublisherDto, ['id'] as const) {}
 
 export class UpdatePublisherDto extends PartialType(OmitType(PublisherDto, ['id', 'siret'] as const)) {}

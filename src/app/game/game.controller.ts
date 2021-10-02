@@ -14,14 +14,14 @@ export class GameController extends CrudController<GameDto> {
 
   @ApiOperation({ summary: 'Create a new record' })
   @Post()
-  async create(@Body() entity: CreateGameDto): Promise<GameDto> {
-    const game = await this.gameService.create(entity);
+  async create(@Body() requestBody: CreateGameDto): Promise<GameDto> {
+    const game = await this.gameService.createGameWithPublisher(requestBody);
     return game;
   }
 
   @ApiOperation({ summary: 'Update an existing record' })
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() entity: UpdateGameDto): Promise<UpdateResult> {
-    return this.gameService.update(id, entity);
+  async update(@Param('id') id: string, @Body() requestBody: UpdateGameDto): Promise<UpdateResult> {
+    return this.gameService.update(id, requestBody);
   }
 }
