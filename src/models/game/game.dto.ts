@@ -40,6 +40,6 @@ export class GameDto implements IGame {
   @IsDate()
   releaseDate: Date;
 }
-export class CreateGameDto extends PartialType(OmitType(GameDto, ['id', 'publisher'] as const)) {}
+export class CreateGameDto extends PartialType(OmitType(GameDto, ['id'] as const)) {}
 
 export class UpdateGameDto extends PartialType(OmitType(GameDto, ['id'] as const)) {}

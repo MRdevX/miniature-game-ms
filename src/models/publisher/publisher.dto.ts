@@ -1,5 +1,5 @@
-import { IsPhoneNumber, IsString, IsUUID } from 'class-validator';
-import { ApiProperty, OmitType, PartialType, PickType } from '@nestjs/swagger';
+import { IsString } from 'class-validator';
+import { ApiProperty, OmitType, PartialType } from '@nestjs/swagger';
 import { IPublisher } from '@root/models/publisher/publisher.model';
 
 export class PublisherDto implements IPublisher {

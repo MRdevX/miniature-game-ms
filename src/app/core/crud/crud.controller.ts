@@ -18,7 +18,7 @@ export class CrudController<T> {
   @ApiResponse({ status: HttpStatus.OK, description: 'Entity retrieved successfully.' })
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Entity does not exist' })
   async findById(@Param('id') id: string): Promise<T> {
-    return this.crudService.getOne(id);
+    return this.crudService.findById(id);
   }
 
   @Post()
