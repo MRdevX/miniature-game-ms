@@ -31,13 +31,13 @@ export abstract class BaseEntitySearchDto<T> implements IBaseSearchDto<T> {
   @IsString({ each: true })
   @IsArray()
   @Type(() => Array)
-  @Transform((value: string) => value.split(','))
+  @Transform(({ value }) => value.split(','))
   sortFields: string[];
 
   @IsOptional()
   @IsInt({ each: true })
   @IsIn([-1, 1], { each: true })
-  @Transform((value) => value.split(',').map(toNumber))
+  @Transform(({ value }) => value.split(',').map(toNumber))
   @IsArray()
   sortDirections: number[];
 
