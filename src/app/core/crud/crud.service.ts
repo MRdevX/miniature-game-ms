@@ -1,5 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { Repository, BaseEntity, DeepPartial, DeleteResult, UpdateResult } from 'typeorm';
+import {
+  Repository,
+  BaseEntity,
+  DeepPartial,
+  DeleteResult,
+  UpdateResult,
+  FindOneOptions,
+  FindConditions,
+} from 'typeorm';
 import { ICrudService } from './crud.service.model';
 
 @Injectable()
@@ -24,5 +32,16 @@ export class CrudService<T extends BaseEntity> implements ICrudService<T> {
 
   async delete(id: string): Promise<DeleteResult> {
     return await this.genericRepository.delete(id);
+  }
+
+  public async findOne(
+    id: string | number | FindOneOptions<T> | FindConditions<T>,
+    options?: FindOneOptions<T>,
+  ): Promise<T> {
+    const result = await this.genericRepository.findOne(id as any, options);
+    if (!result) {
+      return result;
+    }
+    return result;
   }
 }

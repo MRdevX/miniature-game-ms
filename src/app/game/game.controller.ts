@@ -15,7 +15,7 @@ export class GameController extends CrudController<GameDto> {
   @ApiOperation({ summary: 'Create a new record' })
   @Post()
   async create(@Body() requestBody: CreateGameDto): Promise<GameDto> {
-    const game = await this.gameService.create(requestBody);
+    const game = await this.gameService.createGameWithPublisher(requestBody);
     return game;
   }
 
