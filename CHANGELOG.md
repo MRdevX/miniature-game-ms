@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/MRdevX/miniature-game-ms/compare/v0.0.3...v0.0.4) (2021-10-03)
+
+
+### Features
+
+* add base queue implementation ([8d3f9d2](https://github.com/MRdevX/miniature-game-ms/commit/8d3f9d2297dbd31a5f679adde51392a120f83cf5))
+* add make it simple ([d7f1a79](https://github.com/MRdevX/miniature-game-ms/commit/d7f1a79e46321fd59617c4076688092082e245d1))
+* get publisher only ([7b2ec08](https://github.com/MRdevX/miniature-game-ms/commit/7b2ec08fdb325436e2e4f72e64a29d8cbc77f8bc))
+* implement producer api ([2275190](https://github.com/MRdevX/miniature-game-ms/commit/2275190de372f9bc0157b0bbd8cbfb8d304763de))
+* implement purge and discount process ([5d1a9d3](https://github.com/MRdevX/miniature-game-ms/commit/5d1a9d3954ed352b3a5ca96179b1835cc39d6e22))
+
+
+### Bug Fixes
+
+* fix discount formula ([788f411](https://github.com/MRdevX/miniature-game-ms/commit/788f411f13d109056a261e72a464078df2d3c0a5))
+
 ### [0.0.3](https://github.com/MRdevX/miniature-game-ms/compare/v0.0.2...v0.0.3) (2021-10-03)
 
 

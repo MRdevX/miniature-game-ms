@@ -4,7 +4,7 @@ import { CreateGameDto, GameDto, UpdateGameDto } from '@root/models/game/game.dt
 import { CrudController } from '@root/app/core/crud/crud.controller';
 import { GameService } from './game.service';
 import { UpdateResult } from 'typeorm';
-import { GameSearchDto } from '@root/models/game/game-query.dto';
+import { GameSearchDto } from '@root/models/game/game-search.dto';
 
 @Controller('games')
 @ApiTags('Game')
@@ -21,8 +21,10 @@ export class GameController extends CrudController<GameDto> {
 
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve a record by Id.' })
-  async findById(@Param('id') id: string, @Query() query?: GameSearchDto): Promise<GameDto> {
-    console.log(query);
+  async findById(@Param('id') id: string, @Query('publisherOnly') publisherOnly?: boolean): Promise<Partial<GameDto>> {
+    if (publisherOnly) {
+      return this.gameService.getPublisherByGameId(id);
+    }
     return this.gameService.findById(id);
   }
 

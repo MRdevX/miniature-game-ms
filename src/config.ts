@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import convict from 'convict';
 import { Transport } from '@nestjs/microservices';
-import { regexArray } from './app/common/utils/config-schemas';
+import { regexArray } from './app/common/config/config-schemas';
 
 dotenv.config();
 

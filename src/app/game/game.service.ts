@@ -1,12 +1,14 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { PublisherDto } from '@root/models/publisher/publisher.dto';
 import { MiniatureGameErrors } from '@root/app/core/constants/miniature-game.errors';
 import { CrudService } from '@root/app/core/crud/crud.service';
 import { Game } from './game.entity';
 import { PublisherService } from '../publisher/publisher.service';
 import { CreateGameDto, GameDto } from '@root/models/game/game.dto';
+import { MessageQueueService } from '@root/app/core/messaging/message.queue.service';
+import { IGame } from '../../models/game/game.model';
 
 @Injectable()
 export class GameService extends CrudService<Game> {
@@ -14,6 +16,7 @@ export class GameService extends CrudService<Game> {
     @InjectRepository(Game)
     private readonly gameRepository: Repository<Game>,
     private readonly publisherService: PublisherService,
+    private readonly messageQueue: MessageQueueService,
   ) {
     super(gameRepository);
   }
@@ -49,5 +52,11 @@ export class GameService extends CrudService<Game> {
       throw new NotFoundException(MiniatureGameErrors.Publisher.NotFound);
     }
     return publisher;
+  }
+
+  async applyDiscount(game: GameDto, discountPercentage: number): Promise<UpdateResult> {
+    const discountPrice = game.price * (discountPercentage / 100);
+    const newPrice = game.price - discountPrice;
+    return await this.update(game.id, { price: newPrice });
   }
 }

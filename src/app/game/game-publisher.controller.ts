@@ -3,7 +3,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PublisherDto } from '@root/models/publisher/publisher.dto';
 import { GameService } from './game.service';
 
-@Controller('games/:gameId/publishers')
+@Controller('games/:gameId/publisher')
 @ApiTags('Game')
 export class GamePublisherController {
   constructor(private readonly gameService: GameService) {}
