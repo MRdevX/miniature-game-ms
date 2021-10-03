@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/MRdevX/miniature-game-ms/compare/v0.0.5...v0.0.6) (2021-10-03)
+
+
+### Features
+
+* update readme ([279eb4c](https://github.com/MRdevX/miniature-game-ms/commit/279eb4ce13e898c4fd29cebda023dc6f4bb3748f))
+
 ### [0.0.5](https://github.com/MRdevX/miniature-game-ms/compare/v0.0.4...v0.0.5) (2021-10-03)
 
 

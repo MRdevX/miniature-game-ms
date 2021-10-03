@@ -1,6 +1,6 @@
 {
   "name": "nestjs-miniature-game-ms",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A Simple Game REST API Microservice.",
   "author": "Mahdi Rashidi <m8rashidi@gmail.com>",
   "private": true,
