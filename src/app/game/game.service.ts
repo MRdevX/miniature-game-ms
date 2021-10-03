@@ -55,7 +55,8 @@ export class GameService extends CrudService<Game> {
   }
 
   async applyDiscount(game: GameDto, discountPercentage: number): Promise<UpdateResult> {
-    const price = game.price * discountPercentage;
-    return await this.update(game.id, { price });
+    const discountPrice = game.price * (discountPercentage / 100);
+    const newPrice = game.price - discountPrice;
+    return await this.update(game.id, { price: newPrice });
   }
 }

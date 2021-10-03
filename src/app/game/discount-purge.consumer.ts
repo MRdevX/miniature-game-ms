@@ -17,9 +17,11 @@ export class DiscountAndPurgeConsumer {
       games.map(async (game) => {
         const duration = this.utilService.getDuration(game.releaseDate);
         if (duration > deleteOlderThan) {
+          console.log(`${game.title} with ${duration} month(s) age, Deleted!`);
           await this.gameService.delete(game.id);
         }
         if (duration <= discountEndMonth && duration >= discountStartMonth) {
+          console.log(`${game.title} with ${duration} month(s) age, Discounted!`);
           await this.gameService.applyDiscount(game, discountPercentage);
         }
       }),
