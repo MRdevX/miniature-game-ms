@@ -1,7 +1,9 @@
 import { DeepPartial, DeleteResult, FindConditions, FindOneOptions, UpdateResult } from 'typeorm';
+import { BaseEntitySearchDto } from '../../common/base/base-search.dto';
 
 export interface ICrudService<T> {
-  getAll(): Promise<T[]>;
+  search(options: BaseEntitySearchDto<T>): Promise<{ items: T[]; total: number }>;
+  // getAll(): Promise<T[]>;
   findOne(id: string | number | FindOneOptions<T> | FindConditions<T>, options?: FindOneOptions<T>): Promise<T>;
   findById(id: string, options?: FindOneOptions<T>): Promise<T>;
   update(id: string, entity: DeepPartial<T>): Promise<UpdateResult>;

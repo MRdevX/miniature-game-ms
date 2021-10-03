@@ -4,7 +4,7 @@ import { CreateGameDto, GameDto, UpdateGameDto } from '@root/models/game/game.dt
 import { CrudController } from '@root/app/core/crud/crud.controller';
 import { GameService } from './game.service';
 import { UpdateResult } from 'typeorm';
-import { GameQueryDto } from '../../models/game/game-query.dto';
+import { GameSearchDto } from '../../models/game/game-query.dto';
 
 @Controller('games')
 @ApiTags('Game')
@@ -13,9 +13,17 @@ export class GameController extends CrudController<GameDto> {
     super(gameService);
   }
 
+  @ApiOperation({ summary: 'Search paginated' })
+  @Get()
+  async search(@Query() options?: GameSearchDto): Promise<{ items: GameDto[]; total: number }> {
+    console.log(options);
+
+    return this.gameService.search(options);
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve a record by Id.' })
-  async findById(@Param('id') id: string, @Query() query?: GameQueryDto): Promise<GameDto> {
+  async findById(@Param('id') id: string, @Query() query?: GameSearchDto): Promise<GameDto> {
     console.log(query);
     return this.gameService.findById(id);
   }
