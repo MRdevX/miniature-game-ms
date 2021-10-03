@@ -16,6 +16,6 @@ export class GameAdminController {
       context: 'discount-and-purge',
       payload: messageBody,
     };
-    return this.messagingQueueService.sendMessage(messaging);
+    return this.messagingQueueService.discountAndPurge(messaging);
   }
 }

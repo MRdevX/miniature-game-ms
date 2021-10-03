@@ -5,10 +5,10 @@ import { IMessaging } from '@root/models/messaging/messaging.interface';
 export class MessageQueueService {
   constructor(
     @InjectQueue('miniature-messages')
-    private discountQueue: Queue,
+    private messageQueue: Queue,
   ) {}
 
-  public sendMessage(messaging: IMessaging) {
-    return this.discountQueue.add('sendMessage', messaging);
+  public discountAndPurge(messaging: IMessaging) {
+    return this.messageQueue.add('discount-and-purge', messaging);
   }
 }
