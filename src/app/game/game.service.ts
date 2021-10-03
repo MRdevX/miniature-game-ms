@@ -6,7 +6,7 @@ import { MiniatureGameErrors } from '@root/app/core/constants/miniature-game.err
 import { CrudService } from '@root/app/core/crud/crud.service';
 import { Game } from './game.entity';
 import { PublisherService } from '../publisher/publisher.service';
-import { CreateGameDto, GameDto } from '../../models/game/game.dto';
+import { CreateGameDto, GameDto } from '@root/models/game/game.dto';
 
 @Injectable()
 export class GameService extends CrudService<Game> {

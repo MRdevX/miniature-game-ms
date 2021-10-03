@@ -1,4 +1,3 @@
-import { assign, isEmpty, get, set, isArray, each, isString, isObject, filter, isNil, map, merge } from 'lodash';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   Repository,
@@ -10,10 +9,10 @@ import {
   FindConditions,
   SelectQueryBuilder,
 } from 'typeorm';
-import { ErrorMessage } from '../../common/enum/error-message.enum';
+import { ErrorMessage } from '@root/app/common/enum/error-message.enum';
 import { ICrudService } from './crud.service.model';
-import { BaseEntitySearchDto } from '../../common/base/base-search.dto';
-import { IRelation } from '../../common/base/relation.interface';
+import { BaseEntitySearchDto } from '@root/app/common/base/base-search.dto';
+import { IRelation } from '@root/app/common/base/relation.interface';
 
 @Injectable()
 export class CrudService<T extends BaseEntity> implements ICrudService<T> {

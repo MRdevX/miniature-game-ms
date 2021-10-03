@@ -1,18 +1,11 @@
 import { Get, Post, Delete, Body, Param, Patch, HttpStatus, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { DeleteResult, UpdateResult } from 'typeorm';
-import { BaseEntitySearchDto } from '../../common/base/base-search.dto';
+import { BaseEntitySearchDto } from '@root/app/common/base/base-search.dto';
 import { ICrudService } from './crud.service.model';
 
 export class CrudController<T> {
   constructor(private readonly crudService: ICrudService<T>) {}
-
-  // @Get()
-  // @ApiOperation({ summary: 'List all records.' })
-  // @ApiResponse({ status: HttpStatus.OK, description: 'Ok' })
-  // async findAll(): Promise<T[]> {
-  //   return this.crudService.getAll();
-  // }
 
   @ApiOperation({ summary: 'Search paginated' })
   @ApiResponse({ status: HttpStatus.OK, description: 'Found records' })

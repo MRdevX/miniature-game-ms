@@ -20,7 +20,6 @@ export class GameSearchDto extends BaseEntitySearchDto<GameDto> {
   @ApiPropertyOptional()
   offset = 0;
 
-  @ApiPropertyOptional()
   get selectFields(): (keyof GameDto)[] {
     return [];
   }
