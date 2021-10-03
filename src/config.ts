@@ -26,7 +26,7 @@ const config = convict({
     host: {
       doc: 'The application host url',
       format: 'url',
-      default: 'localhost',
+      default: '0.0.0.0',
       env: 'HOST',
     },
     port: {
