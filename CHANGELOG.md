@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/MRdevX/miniature-game-ms/compare/v0.0.3...v0.0.4) (2021-10-03)
+
+
+### Features
+
+* add base queue implementation ([8d3f9d2](https://github.com/MRdevX/miniature-game-ms/commit/8d3f9d2297dbd31a5f679adde51392a120f83cf5))
+* add make it simple ([d7f1a79](https://github.com/MRdevX/miniature-game-ms/commit/d7f1a79e46321fd59617c4076688092082e245d1))
+* get publisher only ([7b2ec08](https://github.com/MRdevX/miniature-game-ms/commit/7b2ec08fdb325436e2e4f72e64a29d8cbc77f8bc))
+* implement producer api ([2275190](https://github.com/MRdevX/miniature-game-ms/commit/2275190de372f9bc0157b0bbd8cbfb8d304763de))
+* implement purge and discount process ([5d1a9d3](https://github.com/MRdevX/miniature-game-ms/commit/5d1a9d3954ed352b3a5ca96179b1835cc39d6e22))
+
+
+### Bug Fixes
+
+* fix discount formula ([788f411](https://github.com/MRdevX/miniature-game-ms/commit/788f411f13d109056a261e72a464078df2d3c0a5))
+
+### [0.0.3](https://github.com/MRdevX/miniature-game-ms/compare/v0.0.2...v0.0.3) (2021-10-03)
+
+
+### Features
+
+* add basic search ([8abcba3](https://github.com/MRdevX/miniature-game-ms/commit/8abcba39c667f60d8c196d466b18d257b2b9ad7a))
+* add find by id ([bef00db](https://github.com/MRdevX/miniature-game-ms/commit/bef00db94cce3d54e07f60d015e32d6071ba9839))
+* add get game publisher by game id ([9ac5cd5](https://github.com/MRdevX/miniature-game-ms/commit/9ac5cd51e5e1ca61ef735709d77ced42e11204cb))
+* add publisher create and update methods ([cf9b05c](https://github.com/MRdevX/miniature-game-ms/commit/cf9b05c39152f842bee5cac1a8e4f3ea561b31e5))
+* add release date index ([4c928d7](https://github.com/MRdevX/miniature-game-ms/commit/4c928d725748ee975241e815c44b9080b0fa2c94))
+* add search enity ([1f959cf](https://github.com/MRdevX/miniature-game-ms/commit/1f959cf817b218524e990ecda610d792ef4386db))
+* add select field query ([acec143](https://github.com/MRdevX/miniature-game-ms/commit/acec14321c9aec124671c86cf5685d82d285ddda))
+* save game with publisher ([29bccd0](https://github.com/MRdevX/miniature-game-ms/commit/29bccd0ca318137b157d30924e81c7983e25cba1))
+* update generic crud ([dca82b6](https://github.com/MRdevX/miniature-game-ms/commit/dca82b6fa889d026d798c49d96b5a8ddc26c3937))
+
+
+### Bug Fixes
+
+* class transformer braking change ([9e3b071](https://github.com/MRdevX/miniature-game-ms/commit/9e3b0713db522c30c5b41c3ac1c3ca9a902419e5))
+* make a clean state ([333d92e](https://github.com/MRdevX/miniature-game-ms/commit/333d92ef93e8dc944ca4269b3e4c65d7fb232a7f))
+
 ### 0.0.2 (2021-09-28)
 
 ### Features

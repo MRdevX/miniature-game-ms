@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CrudService } from '@root/app/core/crud/crud.service';
 import { Publisher } from './publisher.entity';
-import { MiniatureGameErrors } from '../core/constants/miniature-game.errors';
+import { MiniatureGameErrors } from '@root/app/core/constants/miniature-game.errors';
 
 @Injectable()
 export class PublisherService extends CrudService<Publisher> {

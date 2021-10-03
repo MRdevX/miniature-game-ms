@@ -2,7 +2,7 @@ import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CrudController } from '@root/app/core/crud/crud.controller';
 import { UpdateResult } from 'typeorm';
-import { CreatePublisherDto, PublisherDto, UpdatePublisherDto } from '../../models/publisher/publisher.dto';
+import { CreatePublisherDto, PublisherDto, UpdatePublisherDto } from '@root/models/publisher/publisher.dto';
 import { PublisherService } from './publisher.service';
 
 @Controller('publishers')
