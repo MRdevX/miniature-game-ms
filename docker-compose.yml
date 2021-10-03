@@ -5,7 +5,7 @@ services:
     build: .
     image: backend:latest
     networks:
-      - backend
+      - webnet
     command: npm run start:dev
     env_file:
       - ./.env
@@ -15,8 +15,30 @@ services:
     ports:
       - 3000:3000
 
+  postgres:
+    image: postgres:alpine
+    restart: always
+    ports:
+      - 5431:5432
+    volumes:
+      - ./db_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=miniature-game-db
+    networks:
+      - webnet
+
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - 6378:6379
+    networks:
+      - webnet
+
 networks:
-  backend:
+  webnet:
     driver: overlay
     driver_opts:
       encrypted: 'true'

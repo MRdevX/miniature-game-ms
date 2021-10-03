@@ -7,5 +7,7 @@ ENV HOME=/usr/src/backend
 COPY . $HOME
 WORKDIR $HOME
 
+EXPOSE 3000 
+
 RUN npm install
 RUN npm run build
