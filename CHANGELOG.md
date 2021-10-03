@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/MRdevX/miniature-game-ms/compare/v0.0.4...v0.0.5) (2021-10-03)
+
+
+### Features
+
+* add docker support ([777ead5](https://github.com/MRdevX/miniature-game-ms/commit/777ead532be7905d50a8efa58dba0d9db33e230a))
+* add docker support ([afb1e39](https://github.com/MRdevX/miniature-game-ms/commit/afb1e3994d6a99420fa2598712c35ba32c4c7463))
+
+
+### Bug Fixes
+
+* docker compose ([2f9ab13](https://github.com/MRdevX/miniature-game-ms/commit/2f9ab134320e1d9daab9c2074dd953744e0f5b28))
+
 ### [0.0.4](https://github.com/MRdevX/miniature-game-ms/compare/v0.0.3...v0.0.4) (2021-10-03)
 
 
