@@ -1,13 +1,12 @@
 import { merge } from 'lodash';
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { BullModule, BullModuleOptions } from '@nestjs/bull';
-import { IProviderOptions } from './interface/provider-options.interface';
 import { MessageQueueService } from './message.queue.service';
 
 @Global()
 @Module({})
 export class MessagingModule {
-  static forRoot(queueConfig: BullModuleOptions = {}, options: IProviderOptions = {}): DynamicModule {
+  static forRoot(queueConfig: BullModuleOptions = {}): DynamicModule {
     const defaultOptions: BullModuleOptions = {
       limiter: {
         duration: 2000,
@@ -31,7 +30,7 @@ export class MessagingModule {
     return {
       imports: [BullModule.registerQueue(queueOptions)],
       module: MessagingModule,
-      providers: [{ provide: 'ProviderOptions', useValue: options }, MessageQueueService],
+      providers: [MessageQueueService],
       exports: [MessageQueueService],
     };
   }
