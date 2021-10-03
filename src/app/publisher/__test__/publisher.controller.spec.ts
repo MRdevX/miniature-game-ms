@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { PublisherController } from '../publisher.controller';
+import { TestingModule, Test } from '@nestjs/testing';
+import { PublisherController } from '@root/app/publisher/publisher.controller';
 
 describe('PublisherController', () => {
   let controller: PublisherController;
