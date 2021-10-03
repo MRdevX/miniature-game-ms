@@ -1,13 +1,10 @@
-import { merge } from 'lodash';
-import { DynamicModule, Global, Module } from '@nestjs/common';
-import { BullModule, BullModuleOptions } from '@nestjs/bull';
-import { MessageQueueService } from './message.queue.service';
+import { BullModule } from '@nestjs/bull';
+import { Global, Module } from '@nestjs/common';
 
 @Global()
-@Module({})
-export class MessagingModule {
-  static forRoot(queueConfig: BullModuleOptions = {}): DynamicModule {
-    const defaultOptions: BullModuleOptions = {
+@Module({
+  imports: [
+    BullModule.forRoot({
       limiter: {
         duration: 2000,
         max: 2,
@@ -18,20 +15,19 @@ export class MessagingModule {
         removeOnComplete: true,
         removeOnFail: true,
       },
-      name: `${process.env.NODE_ENV || 'development'}_messages`,
       redis: {
         db: 15,
         enableReadyCheck: true,
       },
-    };
-
-    const queueOptions = merge(defaultOptions, queueConfig);
-
-    return {
-      imports: [BullModule.registerQueue(queueOptions)],
-      module: MessagingModule,
-      providers: [MessageQueueService],
-      exports: [MessageQueueService],
-    };
-  }
-}
+    }),
+    BullModule.registerQueue(
+      {
+        name: 'game-discount',
+      },
+      {
+        name: 'legacy-deletion',
+      },
+    ),
+  ],
+})
+export class MessagingModule {}
