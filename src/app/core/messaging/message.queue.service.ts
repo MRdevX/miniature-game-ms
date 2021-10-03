@@ -4,11 +4,11 @@ import { IMessaging } from './interface/messaging.interface';
 
 export class MessageQueueService {
   constructor(
-    @InjectQueue(`${process.env.NODE_ENV || 'development'}_messages`)
-    private messageQueue: Queue,
+    @InjectQueue('purge-and-discount')
+    private discountQueue: Queue,
   ) {}
 
   public sendMessage(messaging: IMessaging) {
-    return this.messageQueue.add('sendMessage', messaging);
+    return this.discountQueue.add('sendMessage', messaging);
   }
 }

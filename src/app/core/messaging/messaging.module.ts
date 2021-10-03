@@ -1,5 +1,6 @@
 import { BullModule } from '@nestjs/bull';
 import { Global, Module } from '@nestjs/common';
+import { MessageQueueService } from './message.queue.service';
 
 @Global()
 @Module({
@@ -20,14 +21,11 @@ import { Global, Module } from '@nestjs/common';
         enableReadyCheck: true,
       },
     }),
-    BullModule.registerQueue(
-      {
-        name: 'game-discount',
-      },
-      {
-        name: 'legacy-deletion',
-      },
-    ),
+    BullModule.registerQueue({
+      name: 'purge-and-discount',
+    }),
   ],
+  providers: [MessageQueueService],
+  exports: [MessageQueueService],
 })
 export class MessagingModule {}
