@@ -1,4 +1,4 @@
-import { Get, Post, Delete, Body, Param, Patch, HttpStatus } from '@nestjs/common';
+import { Get, Post, Delete, Body, Param, Patch, HttpStatus, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { ICrudService } from './crud.service.model';
@@ -17,7 +17,7 @@ export class CrudController<T> {
   @ApiOperation({ summary: 'Retrieve a record by Id.' })
   @ApiResponse({ status: HttpStatus.OK, description: 'Entity retrieved successfully.' })
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Entity does not exist' })
-  async findById(@Param('id') id: string): Promise<T> {
+  async findById(@Param('id') id: string, @Query() query?: any): Promise<T> {
     return this.crudService.findById(id);
   }
 

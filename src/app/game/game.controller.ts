@@ -1,15 +1,23 @@
-import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateGameDto, GameDto, UpdateGameDto } from '@root/models/game/game.dto';
 import { CrudController } from '@root/app/core/crud/crud.controller';
 import { GameService } from './game.service';
 import { UpdateResult } from 'typeorm';
+import { GameQueryDto } from '../../models/game/game-query.dto';
 
 @Controller('games')
 @ApiTags('Game')
 export class GameController extends CrudController<GameDto> {
   constructor(private readonly gameService: GameService) {
     super(gameService);
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Retrieve a record by Id.' })
+  async findById(@Param('id') id: string, @Query() query?: GameQueryDto): Promise<GameDto> {
+    console.log(query);
+    return this.gameService.findById(id);
   }
 
   @ApiOperation({ summary: 'Create a new record' })
