@@ -8,8 +8,6 @@ import { Game } from './game.entity';
 import { PublisherService } from '../publisher/publisher.service';
 import { CreateGameDto, GameDto } from '@root/models/game/game.dto';
 import { MessageQueueService } from '@root/app/core/messaging/message.queue.service';
-import { IPayloadBase } from '../core/messaging/interface/base.payload';
-import { IMessaging } from '../core/messaging/interface/messaging.interface';
 
 @Injectable()
 export class GameService extends CrudService<Game> {

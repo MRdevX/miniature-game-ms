@@ -1,5 +1,4 @@
-export interface IPayloadBase {
-  [key: string]: any;
+export interface IMessagePayload {
   discountPercentage: number;
   discountStartMonth: number;
   discountEndMonth: number;

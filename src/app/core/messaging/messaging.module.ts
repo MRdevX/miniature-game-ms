@@ -22,7 +22,7 @@ import { MessageQueueService } from './message.queue.service';
       },
     }),
     BullModule.registerQueue({
-      name: 'purge-and-discount',
+      name: 'miniature-messages',
     }),
   ],
   providers: [MessageQueueService],

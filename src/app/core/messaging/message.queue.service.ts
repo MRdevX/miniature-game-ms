@@ -1,10 +1,10 @@
 import { Queue } from 'bull';
 import { InjectQueue } from '@nestjs/bull';
-import { IMessaging } from './interface/messaging.interface';
+import { IMessaging } from '@root/models/messaging/messaging.interface';
 
 export class MessageQueueService {
   constructor(
-    @InjectQueue('purge-and-discount')
+    @InjectQueue('miniature-messages')
     private discountQueue: Queue,
   ) {}
 
